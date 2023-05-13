@@ -1,15 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Crud Java</title>
-</head>
-<body>
-	<div>
-		<a href="createForm.jsp">Novo Usuário</a>
-		<a href="viewUsuarios.jsp">Listar Usuários</a>
-	</div>
-</body>
-</html>
+<jsp:include page="layout/head.jsp"></jsp:include>
+<jsp:include page="layout/navbar.jsp"></jsp:include>
+<div class="container">
+	<jsp:include page="view/listTable.jsp"></jsp:include>
+</div>
+<jsp:include page="layout/footer.jsp"></jsp:include>

@@ -88,20 +88,37 @@ public class UsuarioDao {
 	
 	public static int updateUsuario(Usuario u) {
 		int status = 0;
+		String sql;
 		
 		try {
 			Connection con = getConnection();
-			String sql = "UPDATE usuario SET nome = ?, password = ?, email = ?, sexo = ?, pais=? WHERE id = ?";
-			PreparedStatement ps = con.prepareStatement(sql);
 			
-			ps.setString(1, u.getNome());
-			ps.setString(2, u.getPassword());
-			ps.setString(3, u.getEmail());
-			ps.setString(4, u.getSexo());
-			ps.setString(5, u.getPais());
-			ps.setInt(6,  u.getId());
-			
-			status = ps.executeUpdate();
+			if(u.getPassword() == null) {
+				sql = "UPDATE usuario SET nome = ?, email = ?, sexo = ?, pais=? WHERE id = ?";
+				
+				PreparedStatement ps = con.prepareStatement(sql);
+				
+				ps.setString(1, u.getNome());
+				ps.setString(2, u.getEmail());
+				ps.setString(3, u.getSexo());
+				ps.setString(4, u.getPais());
+				ps.setInt(5,  u.getId());
+				
+				status = ps.executeUpdate();
+			} else {
+				sql = "UPDATE usuario SET nome = ?, password = ?, email = ?, sexo = ?, pais=? WHERE id = ?";
+				
+				PreparedStatement ps = con.prepareStatement(sql);
+				
+				ps.setString(1, u.getNome());
+				ps.setString(2, u.getPassword());
+				ps.setString(3, u.getEmail());
+				ps.setString(4, u.getSexo());
+				ps.setString(5, u.getPais());
+				ps.setInt(6,  u.getId());
+				
+				status = ps.executeUpdate();
+			}
 			
 			con.close();
 		} catch (Exception e) {
